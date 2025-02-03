@@ -1,11 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
+    <title>Library Books</title>
 </head>
 <body>
-    <h1>this is book list</h1>
+    <h1>Library Books</h1>
+    <a href="{% url 'book_create' %}">Add New Book</a>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Category</th>
+            <th>Available</th>
+            <th>Actions</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.category }}</td>
+            <td>{{ book.available }}</td>
+            <td>
+                <a href="{% url 'book_update' book.id %}">Edit</a> |
+                <a href="{% url 'book_delete' book.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
